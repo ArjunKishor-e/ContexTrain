@@ -1,7 +1,7 @@
 import sys
 
 from contextrain.indexer import index_project
-from contextrain.memory import read_file
+from contextrain.memory import get_project_summary
 
 
 def main() -> None:
@@ -9,15 +9,9 @@ def main() -> None:
 
     files = index_project(project_path)
 
-    print(f"Found {len(files)} files:\n")
+    summary = get_project_summary(files)
 
-    for file in files:
-        print(f"--- {file.name} ---")
-
-        content = read_file(file)
-        print(content[:500])
-
-        print()
+    print(summary)
 
 
 if __name__ == "__main__":
