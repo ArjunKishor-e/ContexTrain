@@ -20,3 +20,17 @@ def get_project_summary(files: list[Path]) -> str:
         summary.append(f"- {file}")
 
     return "\n".join(summary)
+
+
+def chunk_text(text: str, chunk_size: int = 50) -> list[str]:
+    """Split text into chunks of lines."""
+
+    lines = text.splitlines()
+
+    chunks = []
+
+    for i in range(0, len(lines), chunk_size):
+        chunk = "\n".join(lines[i:i + chunk_size])
+        chunks.append(chunk)
+
+    return chunks

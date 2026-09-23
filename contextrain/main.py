@@ -1,7 +1,7 @@
 import sys
 
 from contextrain.indexer import index_project
-from contextrain.memory import get_project_summary
+from contextrain.memory import chunk_text, read_file
 
 
 def main() -> None:
@@ -9,9 +9,11 @@ def main() -> None:
 
     files = index_project(project_path)
 
-    summary = get_project_summary(files)
+    for file in files:
+        content = read_file(file)
+        chunks = chunk_text(content)
 
-    print(summary)
+        print(f"{file.name}: {len(chunks)} chunks")
 
 
 if __name__ == "__main__":
