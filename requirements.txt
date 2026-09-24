@@ -3,3 +3,5 @@ uvicorn
 jinja2
 python-multipart
 anthropic
+sentence-transformers
+scikit-learn
