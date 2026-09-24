@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ContexTrain</title>
+</head>
+<body>
+    <h1>ContexTrain</h1>
+
+    <form method="post" action="/ask">
+        <input
+            type="text"
+            name="question"
+            placeholder="Ask a question about your project"
+            required
+        >
+        <button type="submit">Ask</button>
+    </form>
+
+    {% if answer %}
+        <h2>Answer</h2>
+        <p>{{ answer }}</p>
+    {% endif %}
+</body>
+</html> 
