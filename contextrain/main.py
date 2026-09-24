@@ -1,6 +1,7 @@
 import sys
 
 from contextrain.indexer import index_project
+from contextrain.llm import generate_answer
 from contextrain.memory import chunk_text, read_file
 from contextrain.search import search_chunks
 
@@ -19,13 +20,12 @@ def main() -> None:
 
     query = "Where does the application handle API routes?"
 
-    results = search_chunks(query, all_chunks)
+    relevant_chunks = search_chunks(query, all_chunks)
 
-    print("\nMost relevant chunks:\n")
+    answer = generate_answer(query, relevant_chunks)
 
-    for result in results:
-        print("---")
-        print(result)
+    print("\nAnswer:\n")
+    print(answer)
 
 
 if __name__ == "__main__":
