@@ -7,12 +7,15 @@ def generate_answer(question: str, context: list[str]) -> str:
     context_text = "\n\n".join(context)
 
     prompt = f"""
-Answer the question using the project context below.
+Use the provided project context as the source of truth.
 
-If the answer cannot be found in the context, say:
-"I don't know based on the provided project context."
+If the context contains code that directly answers the question, state that answer directly.
 
-Do not make assumptions or invent files, functions, or directories.
+For example, if the context shows a model name, library, function, file, or configuration value, use that information in your answer.
+
+Only say "I don't know based on the provided project context." when the required information genuinely does not appear anywhere in the provided context.
+
+Do not invent information that is not present in the context.
 
 Project context:
 {context_text}

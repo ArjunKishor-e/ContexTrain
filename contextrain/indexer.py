@@ -11,6 +11,14 @@ IGNORED_DIRECTORIES = {
     ".vscode",
 }
 
+IGNORED_FILES = {
+    ".gitignore",
+    ".env",
+    ".env.local",
+    ".env.development",
+    ".env.production",
+}
+
 
 def index_project(project_path: str) -> list[Path]:
     """Return source files found inside a project."""
@@ -27,6 +35,9 @@ def index_project(project_path: str) -> list[Path]:
 
     for path in root.rglob("*"):
         if not path.is_file():
+            continue
+
+        if path.name in IGNORED_FILES:
             continue
 
         if any(part in IGNORED_DIRECTORIES for part in path.parts):

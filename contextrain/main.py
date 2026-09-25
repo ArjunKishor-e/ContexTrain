@@ -32,10 +32,13 @@ def ask(request: Request, question: str = Form(...)):
     for file in files:
         content = read_file(file)
         chunks = chunk_text(content)
-        all_chunks.extend(chunks)
+        for chunk in chunks:
+            all_chunks.append(
+                f"File: {file}\n\n{chunk}"
+            )
 
     relevant_chunks = search_chunks(question, all_chunks)
-
+    
     answer = generate_answer(question, relevant_chunks)
 
     return templates.TemplateResponse(
